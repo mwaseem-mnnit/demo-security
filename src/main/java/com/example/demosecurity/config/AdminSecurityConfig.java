@@ -1,5 +1,6 @@
 package com.example.demosecurity.config;
 
+import com.example.demosecurity.service.UserDetailServiceH2;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -15,9 +16,15 @@ import org.springframework.security.web.authentication.www.DigestAuthenticationF
 /**
  * Created by mohd.waseem on 21/06/20.
  */
-@Configuration
+//@Configuration
 @Order(50)
 public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
+
+    private final UserDetailServiceH2 userDetailServiceH2;
+
+    public AdminSecurityConfig(UserDetailServiceH2 userDetailServiceH2) {
+        this.userDetailServiceH2 = userDetailServiceH2;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -51,17 +58,5 @@ public class AdminSecurityConfig extends WebSecurityConfigurerAdapter{
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser("user")
-                .password("user")
-                .roles("USER")
-                .and()
-                .withUser("admin")
-                .password("admin")
-                .roles("ADMIN");
     }
 }

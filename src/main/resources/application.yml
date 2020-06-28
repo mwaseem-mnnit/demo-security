@@ -5,3 +5,16 @@ server:
     key-store: classpath:keystore.p12
     key-store-type: PKCS12
     key-alias: tomcat
+spring:
+  datasource:
+    url: jdbc:h2:~/test
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  jpa:
+    hibernate:
+      ddl-auto: none

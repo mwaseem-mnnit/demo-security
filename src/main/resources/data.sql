@@ -1,0 +1,11 @@
+INSERT into users (username, password, email, enabled) values ('snakamoto','{noop}bitcoin','snakamoto@gmail.com',true);
+INSERT into users (username, password, email, enabled) values ('user','{noop}password','user@gmail.com',true);
+INSERT into users (username, password, email, enabled) values ('admin','{noop}god','admin@gmail.com',true);
+INSERT into authorities (username, authority) values ('user','USER');
+INSERT into authorities (username, authority) values ('admin','ADMIN');
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (1, 'user', 'BTC', 'BUY',1,5000);
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (2, 'user', 'BTC', 'BUY',3.5,5500);
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (3, 'user', 'LTC', 'BUY',100,50);
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (4, 'user', 'BTC', 'BUY',0.5,4000);
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (5, 'user', 'LTC', 'BUY',31,70);
+INSERT into TRANSACTIONS (id, username, coin, type, quantity, price) values (6, 'user', 'BTC', 'BUY',4,5000);
