@@ -20,8 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests().antMatchers("/").permitAll().and()
-                .authorizeRequests().antMatchers("/h2-console/**").permitAll()
+                .authorizeRequests().antMatchers("/h2-console/**", "/user/register/**").permitAll()
                 .and()
                 .authorizeRequests().antMatchers("/admin/**").hasRole("ADMIN")
                 .and()
@@ -31,14 +30,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .logout();
-
         // CSRF tokens handling
         http.addFilterAfter(new CsrfTokenResponseHeaderBindingFilter(), CsrfFilter.class);
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/css/**", "/webjars/**", "/h2-console/**");
+        web.ignoring().antMatchers("/css/**", "/webjars/**", "/h2-console/**", "/user/register/**");
     }
 
     @Bean

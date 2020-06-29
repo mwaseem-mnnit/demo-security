@@ -1,24 +1,26 @@
 drop table if exists TRANSACTIONS;
-drop table if exists authorities;
-drop table if exists users;
-create table users
+drop table if exists authority;
+drop table if exists user;
+create table user
 (
-    username varchar_ignorecase(50) not null primary key,
-    password varchar_ignorecase(50) not null,
-    email   varchar(100) not null,
-    enabled boolean      not null
+    id       integer      not null primary key auto_increment,
+    username varchar(50)  not null unique ,
+    password varchar(80)  not null,
+    email    varchar(100) not null,
+    enabled  boolean      not null
 );
 
-create table authorities
+create table authority
 (
-    username varchar_ignorecase(50) not null primary key,
+    id      integer not null primary key auto_increment,
+    user_id integer not null,
     authority varchar_ignorecase(50) not null,
-    constraint fk_authorities_users foreign key (username) references users (username)
+    constraint fk_authorities_user foreign key (user_id) references user (id)
 );
-create unique index ix_auth_username on authorities (username, authority);
+create unique index ix_auth_username on authority (id, authority);
 CREATE TABLE IF NOT EXISTS TRANSACTIONS
 (
-    id       INT PRIMARY KEY,
+    id       INT not null PRIMARY KEY auto_increment,
     username VARCHAR(30),
     coin     VARCHAR(3),
     type     VARCHAR(5),
