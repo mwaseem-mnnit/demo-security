@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 /**
  * Created by mohd.waseem on 28/06/20.
  */
@@ -21,7 +23,7 @@ public class UserRegistrationController {
     }
 
     @PostMapping("register")
-    public ResponseEntity<UserDTO> registerUser(@RequestBody UserDTO userDTO) throws Exception {
+    public ResponseEntity<UserDTO> registerUser(@RequestBody @Valid UserDTO userDTO) throws Exception {
         userDetailService.createUser(userDTO);
         return ResponseEntity.ok(userDTO);
     }
